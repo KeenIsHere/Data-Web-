@@ -1,0 +1,295 @@
+﻿/* Color Theme */
+:root {
+    --primary-dark: #0D1B2A;
+    --secondary-dark: #1B263B;
+    --accent-gold: #E0A80D;
+    --background-light: #F5F7FA;
+    --white: #FFFFFF;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: var(--background-light);
+    min-height: calc(100vh - 200px);
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: white;
+    margin-bottom: 20px;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.dashboard-card .card-body {
+    padding: 30px;
+    text-align: center;
+}
+
+.dashboard-card .card-icon {
+    font-size: 3rem;
+    color: var(--accent-gold);
+    margin-bottom: 15px;
+}
+
+.dashboard-card .card-title {
+    color: var(--primary-dark);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.dashboard-card .card-text {
+    color: var(--secondary-dark);
+}
+
+/* Header Section */
+.cinema-header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+    color: var(--white);
+    padding: 40px 0;
+    margin-bottom: 30px;
+    border-radius: 0 0 20px 20px;
+}
+
+.cinema-header h1 {
+    color: var(--accent-gold);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Navigation */
+.navbar {
+    background: var(--primary-dark) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    color: var(--accent-gold) !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    color: var(--white) !important;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--accent-gold) !important;
+}
+
+/* GridView Styling */
+.gridview-styled {
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.gridview-styled th {
+    background: var(--primary-dark);
+    color: var(--accent-gold);
+    padding: 15px;
+    font-weight: bold;
+    border: none;
+}
+
+.gridview-styled td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.gridview-styled tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.gridview-styled tr:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+}
+
+/* FormView Styling */
+.formview-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.formview-container label {
+    font-weight: bold;
+    color: var(--primary-dark);
+    margin-top: 10px;
+    display: block;
+}
+
+.formview-container input[type="text"],
+.formview-container select {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: 2px solid #dee2e6;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.formview-container input[type="text"]:focus,
+.formview-container select:focus {
+    border-color: var(--accent-gold);
+    outline: none;
+}
+
+/* Button Styling */
+.btn-insert {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-insert:hover {
+    background-color: #218838;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-update {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-update:hover {
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-filter {
+    background-color: var(--accent-gold);
+    color: var(--primary-dark);
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-filter:hover {
+    background-color: #c99500;
+    color: var(--primary-dark);
+    text-decoration: none;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+    color: white;
+    text-decoration: none;
+}
+
+/* Top 3 Highlight */
+.top-performer {
+    background-color: #fff9e6 !important;
+    border-left: 5px solid var(--accent-gold);
+    font-weight: bold;
+}
+
+/* Page Header */
+.page-header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.page-header h2 {
+    color: var(--accent-gold);
+    margin: 0;
+}
+
+/* Form Labels */
+.form-label {
+    font-weight: bold;
+    color: var(--primary-dark);
+    margin-top: 10px;
+}
+
+/* Alert Messages */
+.alert-custom {
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .body-content {
+        padding: 20px;
+    }
+}
