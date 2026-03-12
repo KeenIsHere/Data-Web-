@@ -67,6 +67,35 @@ namespace WebApplication3
                 // User clicked Cancel or after update
                 ResetToAllUsers();
             }
+            else if (e.NewMode == FormViewMode.Insert)
+            {
+                // User clicked "Add New" - prepare for insert
+                SqlDataSource1.SelectCommand = "SELECT NULL AS USERID, NULL AS USERNAME, NULL AS USERCONTACT FROM DUAL WHERE 1=0";
+                FormView1.DataBind();
+            }
+        }
+
+        protected void FormView1_ItemInserted(object sender, FormViewInsertedEventArgs e)
+        {
+            if (e.Exception == null)
+            {
+                // Reset to show all users after successful insert
+                ResetToAllUsers();
+                
+                // Show success message
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", 
+                    "alert('New user added successfully!');", true);
+            }
+            else
+            {
+                e.ExceptionHandled = true;
+                e.KeepInInsertMode = true;
+                
+                // Show error message
+                string errorMsg = e.Exception.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", 
+                    "alert('Error adding user: " + errorMsg + "');", true);
+            }
         }
 
         private void ResetToAllUsers()

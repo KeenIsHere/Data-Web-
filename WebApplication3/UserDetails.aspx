@@ -10,6 +10,7 @@
         <asp:FormView ID="FormView1" runat="server" DataKeyNames="USERID" DataSourceID="SqlDataSource1" 
             DefaultMode="ReadOnly" 
             OnItemUpdated="FormView1_ItemUpdated" 
+            OnItemInserted="FormView1_ItemInserted"
             OnModeChanging="FormView1_ModeChanging">
             <EditItemTemplate>
                 <div class="row">
@@ -73,6 +74,10 @@
                         <div class="alert alert-info">
                             <i class="fas fa-info-circle"></i> 
                             <strong>Select a user to edit:</strong> Click the "Edit" button next to any user in the table below to modify their information.
+                        </div>
+                        <div class="mt-3">
+                            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" 
+                                Text="? Add New User" CssClass="btn-insert" />
                         </div>
                     </div>
                 </div>
