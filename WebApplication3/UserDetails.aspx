@@ -79,7 +79,7 @@
                         <div class="mt-3">
                             <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="btn-update" />
                             <asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="btn-delete" 
-                                OnClientClick="return confirm('Are you sure you want to delete this user?');" />
+                                OnClientClick="return confirm('?? WARNING: Deleting this user will also remove:\n\n• All their bookings\n• All their tickets\n• All their payments\n\nThis action cannot be undone!\n\nAre you sure you want to proceed?');" />
                             <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="Add New" CssClass="btn-insert" />
                         </div>
                     </div>
@@ -110,7 +110,7 @@
         SelectCommand="SELECT USERID, USERNAME, USERCONTACT FROM USER_ACCOUNT ORDER BY USERID"
         InsertCommand="INSERT INTO USER_ACCOUNT (USERID, USERNAME, USERCONTACT) VALUES (:USERID, :USERNAME, :USERCONTACT)"
         UpdateCommand="UPDATE USER_ACCOUNT SET USERNAME = :USERNAME, USERCONTACT = :USERCONTACT WHERE USERID = :USERID"
-        DeleteCommand="DELETE FROM USER_ACCOUNT WHERE USERID = :USERID">
+        DeleteCommand="BEGIN DELETE FROM PAYMENT WHERE BOOKINGID IN (SELECT BOOKINGID FROM BOOKING WHERE USERID = :USERID); DELETE FROM TICKET WHERE BOOKINGID IN (SELECT BOOKINGID FROM BOOKING WHERE USERID = :USERID); DELETE FROM BOOKING WHERE USERID = :USERID; DELETE FROM USER_ACCOUNT WHERE USERID = :USERID; END;">
         <InsertParameters>
             <asp:Parameter Name="USERID" Type="String" />
             <asp:Parameter Name="USERNAME" Type="String" />
