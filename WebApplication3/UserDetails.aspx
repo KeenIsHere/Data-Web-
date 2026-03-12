@@ -7,7 +7,10 @@
     </div>
 
     <div class="formview-container">
-        <asp:FormView ID="FormView1" runat="server" DataKeyNames="USERID" DataSourceID="SqlDataSource1" DefaultMode="Insert">
+        <asp:FormView ID="FormView1" runat="server" DataKeyNames="USERID" DataSourceID="SqlDataSource1" 
+            DefaultMode="ReadOnly" 
+            OnItemUpdated="FormView1_ItemUpdated" 
+            OnModeChanging="FormView1_ModeChanging">
             <EditItemTemplate>
                 <div class="row">
                     <div class="col-md-6">
@@ -67,20 +70,9 @@
             <ItemTemplate>
                 <div class="row">
                     <div class="col-md-6">
-                        <label class="form-label">User ID:</label>
-                        <asp:Label ID="USERIDLabel" runat="server" Text='<%# Eval("USERID") %>' CssClass="form-control-plaintext" />
-                        
-                        <label class="form-label">User Name:</label>
-                        <asp:Label ID="USERNAMELabel" runat="server" Text='<%# Eval("USERNAME") %>' CssClass="form-control-plaintext" />
-                        
-                        <label class="form-label">User Contact:</label>
-                        <asp:Label ID="USERCONTACTLabel" runat="server" Text='<%# Eval("USERCONTACT") %>' CssClass="form-control-plaintext" />
-                        
-                        <div class="mt-3">
-                            <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="btn-update" />
-                            <asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="btn-delete" 
-                                OnClientClick="return confirm('?? WARNING: Deleting this user will also remove:\n\n• All their bookings\n• All their tickets\n• All their payments\n\nThis action cannot be undone!\n\nAre you sure you want to proceed?');" />
-                            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="Add New" CssClass="btn-insert" />
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> 
+                            <strong>Select a user to edit:</strong> Click the "Edit" button next to any user in the table below to modify their information.
                         </div>
                     </div>
                 </div>
@@ -92,13 +84,23 @@
         <h3 class="mb-3" style="color: #0D1B2A;"><i class="fas fa-list"></i> All Users</h3>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="USERID" 
             DataSourceID="SqlDataSource1" CssClass="table table-striped table-hover gridview-styled"
-            AllowPaging="True" AllowSorting="True" PageSize="10">
+            AllowPaging="True" AllowSorting="True" PageSize="10"
+            OnRowCommand="GridView1_RowCommand">
             <Columns>
                 <asp:BoundField DataField="USERID" HeaderText="User ID" ReadOnly="True" SortExpression="USERID" />
                 <asp:BoundField DataField="USERNAME" HeaderText="User Name" SortExpression="USERNAME" />
                 <asp:BoundField DataField="USERCONTACT" HeaderText="Contact" SortExpression="USERCONTACT" />
-                <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" ButtonType="Button" 
-                    ControlStyle-CssClass="btn btn-sm btn-primary me-1" />
+                <asp:TemplateField HeaderText="Actions">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkEdit" runat="server" Text="?? Edit" 
+                            CommandName="EditUser" CommandArgument='<%# Eval("USERID") %>' 
+                            CssClass="btn btn-sm btn-primary me-1" />
+                        <asp:LinkButton ID="lnkDelete" runat="server" Text="??? Delete" 
+                            CommandName="Delete" 
+                            CssClass="btn btn-sm btn-danger" 
+                            OnClientClick="return confirm('?? WARNING: Deleting this user will also remove:\n\n• All their bookings\n• All their tickets\n• All their payments\n\nThis action cannot be undone!\n\nAre you sure you want to proceed?');" />
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
             <PagerStyle CssClass="pagination" HorizontalAlign="Center" />
         </asp:GridView>
