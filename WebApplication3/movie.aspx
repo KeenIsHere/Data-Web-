@@ -68,7 +68,7 @@
                 </ItemTemplate>
             </asp:FormView>
             <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" ProviderName="<%$ ConnectionStrings:ConnectionString2.ProviderName %>" SelectCommand="SELECT * FROM &quot;MOVIE&quot;"></asp:SqlDataSource>
-            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="MOVIEID" DataSourceID="SqlDataSource2">
+            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="MOVIEID" DataSourceID="SqlDataSource3">
                 <Columns>
                     <asp:BoundField DataField="MOVIEID" HeaderText="MOVIEID" ReadOnly="True" SortExpression="MOVIEID" />
                     <asp:BoundField DataField="MOVIETITLE" HeaderText="MOVIETITLE" SortExpression="MOVIETITLE" />
@@ -77,6 +77,7 @@
                     <asp:BoundField DataField="RELEASEDATE" HeaderText="RELEASEDATE" SortExpression="RELEASEDATE" />
                 </Columns>
             </asp:GridView>
+            <asp:SqlDataSource ID="SqlDataSource3" runat="server"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;MOVIE&quot;"></asp:SqlDataSource>
         </div>
     </form>

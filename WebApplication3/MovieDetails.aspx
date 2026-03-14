@@ -200,7 +200,7 @@
                         </div>
                         <div class="mt-3">
                             <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" 
-                                Text="? Add New Movie" CssClass="btn-insert" />
+                                Text="Add New Movie" CssClass="btn-insert" />
                         </div>
                     </div>
                 </div>
@@ -231,10 +231,10 @@
                 <asp:BoundField DataField="RELEASEDATE" HeaderText="Release Date" SortExpression="RELEASEDATE" DataFormatString="{0:dd-MMM-yyyy}" />
                 <asp:TemplateField HeaderText="Actions">
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnkEdit" runat="server" Text="?? Edit" 
+                        <asp:LinkButton ID="lnkEdit" runat="server" Text=" Edit" 
                             CommandName="EditMovie" CommandArgument='<%# Eval("MOVIEID") %>' 
                             CssClass="btn btn-sm btn-primary me-1" />
-                        <asp:LinkButton ID="lnkDelete" runat="server" Text="??? Delete" 
+                        <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" 
                             CommandName="DeleteMovie" CommandArgument='<%# Eval("MOVIEID") %>'
                             OnClientClick="return confirm('Delete this movie and related records?');"
                             CssClass="btn btn-sm btn-danger" />

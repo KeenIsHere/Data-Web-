@@ -93,8 +93,8 @@
                 <asp:BoundField DataField="BOOKINGID" HeaderText="Booking ID" />
                 <asp:BoundField DataField="USERNAME" HeaderText="User" />
                 <asp:BoundField DataField="SEATNUMBER" HeaderText="Seat" />
-                <asp:BoundField DataField="BASETICKETPRICE" HeaderText="Base Price" DataFormatString="{0:C}" />
-                <asp:BoundField DataField="FINALTICKETPRICE" HeaderText="Final Price" DataFormatString="{0:C}" />
+                <asp:BoundField DataField="BASETICKETPRICE" HeaderText="Base Price" />
+                <asp:BoundField DataField="FINALTICKETPRICE" HeaderText="Final Price"  />
                 <asp:BoundField DataField="SEATSTATUS" HeaderText="Status" />
                 <asp:TemplateField HeaderText="Actions">
                     <ItemTemplate>

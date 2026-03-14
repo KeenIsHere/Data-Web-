@@ -90,7 +90,7 @@
                             <strong>Select a show to edit:</strong> Click the "Edit" button next to any show in the table below.
                         </div>
                         <div class="mt-3">
-                            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="➕ Add New Show" CssClass="btn-insert" />
+                            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="Add New Show" CssClass="btn-insert" />
                         </div>
                     </div>
                 </div>
@@ -107,13 +107,13 @@
                 <asp:BoundField DataField="SHOWID" HeaderText="Show ID" ReadOnly="True" SortExpression="SHOWID" />
                 <asp:TemplateField HeaderText="Movie Title" SortExpression="MOVIETITLE">
                     <ItemTemplate>
-                        <i class="fas fa-film" style="color: #E0A80D;"></i>
+                        <i class="" style="color: #E0A80D;"></i>
                         <asp:Label ID="MovieLabel" runat="server" Text='<%# Eval("MOVIETITLE") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Hall" SortExpression="HALLNUMBER">
                     <ItemTemplate>
-                        <i class="fas fa-door-open" style="color: #1B263B;"></i>
+                        <i class="" style="color: #1B263B;"></i>
                         <asp:Label ID="HallLabel" runat="server" Text='<%# "Hall " + Eval("HALLNUMBER") + " - " + Eval("THEATERNAME") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
@@ -121,8 +121,8 @@
                 <asp:BoundField DataField="SHOWTIME" HeaderText="Show Time" SortExpression="SHOWTIME" />
                 <asp:TemplateField HeaderText="Actions">
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnkEdit" runat="server" Text="✏️ Edit" CommandName="EditShow" CommandArgument='<%# Eval("SHOWID") %>' CssClass="btn btn-sm btn-primary me-1" />
-                        <asp:LinkButton ID="lnkDelete" runat="server" Text="🗑️ Delete" CommandName="DeleteShow" CommandArgument='<%# Eval("SHOWID") %>' OnClientClick="return confirm('Delete this show and related records?');" CssClass="btn btn-sm btn-danger" />
+                        <asp:LinkButton ID="lnkEdit" runat="server" Text=" Edit" CommandName="EditShow" CommandArgument='<%# Eval("SHOWID") %>' CssClass="btn btn-sm btn-primary me-1" />
+                        <asp:LinkButton ID="lnkDelete" runat="server" Text=" Delete" CommandName="DeleteShow" CommandArgument='<%# Eval("SHOWID") %>' OnClientClick="return confirm('Delete this show and related records?');" CssClass="btn btn-sm btn-danger" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

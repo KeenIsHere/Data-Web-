@@ -53,7 +53,7 @@
                             <strong>Select a theater to edit:</strong> Click the Edit button from theater table.
                         </div>
                         <div class="mt-3">
-                            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="? Add New Theater" CssClass="btn-insert" />
+                            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="Add New Theater" CssClass="btn-insert" />
                         </div>
                     </ItemTemplate>
                 </asp:FormView>
@@ -69,8 +69,8 @@
                         <asp:BoundField DataField="THEATERNAME" HeaderText="Theater Name" SortExpression="THEATERNAME" />
                         <asp:TemplateField HeaderText="Actions">
                             <ItemTemplate>
-                                <asp:LinkButton ID="lnkEditTheater" runat="server" Text="?? Edit" CommandName="EditTheater" CommandArgument='<%# Eval("THEATERID") %>' CssClass="btn btn-sm btn-primary me-1" />
-                                <asp:LinkButton ID="lnkDeleteTheater" runat="server" Text="??? Delete" CommandName="Delete" CssClass="btn btn-sm btn-danger" />
+                                <asp:LinkButton ID="lnkEditTheater" runat="server" Text=" Edit" CommandName="EditTheater" CommandArgument='<%# Eval("THEATERID") %>' CssClass="btn btn-sm btn-primary me-1" />
+                                <asp:LinkButton ID="lnkDeleteTheater" runat="server" Text=" Delete" CommandName="Delete" CssClass="btn btn-sm btn-danger" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -146,7 +146,7 @@
                             <strong>Select a hall to edit:</strong> Click the Edit button from hall table.
                         </div>
                         <div class="mt-3">
-                            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="? Add New Hall" CssClass="btn-insert" />
+                            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text=" Add New Hall" CssClass="btn-insert" />
                         </div>
                     </ItemTemplate>
                 </asp:FormView>
@@ -171,7 +171,7 @@
                 <asp:BoundField DataField="HALLCAPACITY" HeaderText="Capacity" SortExpression="HALLCAPACITY" />
                 <asp:TemplateField HeaderText="Actions">
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnkEditHall" runat="server" Text="?? Edit" CommandName="EditHall" CommandArgument='<%# Eval("HALLID") %>' CssClass="btn btn-sm btn-primary me-1" />
+                        <asp:LinkButton ID="lnkEditHall" runat="server" Text=" Edit" CommandName="EditHall" CommandArgument='<%# Eval("HALLID") %>' CssClass="btn btn-sm btn-primary me-1" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

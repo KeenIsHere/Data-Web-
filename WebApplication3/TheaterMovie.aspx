@@ -31,19 +31,19 @@
             <Columns>
                 <asp:TemplateField HeaderText="Theater" SortExpression="THEATERNAME">
                     <ItemTemplate>
-                        <i class="fas fa-building" style="color: #E0A80D;"></i>
+                        <i class="" style="color: #E0A80D;"></i>
                         <asp:Label ID="TheaterLabel" runat="server" Text='<%# Eval("THEATERNAME") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Hall" SortExpression="HALLNUMBER">
                     <ItemTemplate>
-                        <i class="fas fa-door-open" style="color: #1B263B;"></i>
+                        <i class="" style="color: #1B263B;"></i>
                         <asp:Label ID="HallLabel" runat="server" Text='<%# "Hall " + Eval("HALLNUMBER") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Movie" SortExpression="MOVIETITLE">
                     <ItemTemplate>
-                        <i class="fas fa-film" style="color: #E0A80D;"></i>
+                        <i class="" style="color: #E0A80D;"></i>
                         <asp:Label ID="MovieLabel" runat="server" Text='<%# Eval("MOVIETITLE") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>

@@ -43,19 +43,19 @@
             <Columns>
                 <asp:TemplateField HeaderText="Rank">
                     <ItemTemplate>
-                        <i class="fas fa-medal" style="color: #E0A80D; font-size: 1.5rem;"></i>
+                        <i class="" style="color: #E0A80D; font-size: 1.5rem;"></i>
                         <strong><%# Container.DataItemIndex + 1 %></strong>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Theater" SortExpression="THEATERNAME">
                     <ItemTemplate>
-                        <i class="fas fa-building" style="color: #0D1B2A;"></i>
+                        <i class="" style="color: #0D1B2A;"></i>
                         <asp:Label ID="TheaterLabel" runat="server" Text='<%# Eval("THEATERNAME") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Hall" SortExpression="HALLNUMBER">
                     <ItemTemplate>
-                        <i class="fas fa-door-open" style="color: #1B263B;"></i>
+                        <i class="" style="color: #1B263B;"></i>
                         <asp:Label ID="HallLabel" runat="server" Text='<%# "Hall " + Eval("HALLNUMBER") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>

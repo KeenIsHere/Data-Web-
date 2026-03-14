@@ -9,15 +9,81 @@
 
 namespace WebApplication3
 {
+
+
     public partial class TheaterCityHallDetails
     {
+
+        /// <summary>
+        /// FormViewTheater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.FormView FormViewTheater;
+
+        /// <summary>
+        /// GridViewTheater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewTheater;
+
+        /// <summary>
+        /// FormViewHall control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.FormView FormViewHall;
+
+        /// <summary>
+        /// GridViewHall control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewHall;
+
+        /// <summary>
+        /// SqlDataSourceTheater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceTheater;
+
+        /// <summary>
+        /// SqlDataSourceHall control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceHall;
+
+        /// <summary>
+        /// SqlDataSourceTheaterDropdown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceTheaterDropdown;
+
+        /// <summary>
+        /// SqlDataSourceHallView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceHallView;
     }
 }

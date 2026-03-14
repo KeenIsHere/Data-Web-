@@ -77,7 +77,7 @@
                         </div>
                         <div class="mt-3">
                             <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" 
-                                Text="? Add New User" CssClass="btn-insert" />
+                                Text=" Add New User" CssClass="btn-insert" />
                         </div>
                     </div>
                 </div>
@@ -97,10 +97,10 @@
                 <asp:BoundField DataField="USERCONTACT" HeaderText="Contact" SortExpression="USERCONTACT" />
                 <asp:TemplateField HeaderText="Actions">
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnkEdit" runat="server" Text="?? Edit" 
+                        <asp:LinkButton ID="lnkEdit" runat="server" Text=" Edit" 
                             CommandName="EditUser" CommandArgument='<%# Eval("USERID") %>' 
                             CssClass="btn btn-sm btn-primary me-1" />
-                        <asp:LinkButton ID="lnkDelete" runat="server" Text="??? Delete" 
+                        <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" 
                             CommandName="Delete" 
                             CssClass="btn btn-sm btn-danger" 
                             OnClientClick="return confirm('?? WARNING: Deleting this user will also remove:\n\n• All their bookings\n• All their tickets\n• All their payments\n\nThis action cannot be undone!\n\nAre you sure you want to proceed?');" />
