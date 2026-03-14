@@ -13,10 +13,11 @@
 
     <div class="formview-container">
         <asp:FormView ID="FormView1" runat="server" DataKeyNames="MOVIEID" DataSourceID="SqlDataSource1" 
-            DefaultMode="Insert" AllowPaging="True"
+            DefaultMode="ReadOnly" AllowPaging="True"
             OnItemInserted="FormView1_ItemInserted"
             OnItemUpdated="FormView1_ItemUpdated"
             OnItemDeleted="FormView1_ItemDeleted"
+            OnModeChanging="FormView1_ModeChanging"
             OnItemCommand="FormView1_ItemCommand">
             
             <EditItemTemplate>
@@ -80,20 +81,12 @@
                             ForeColor="Red" Display="Dynamic" />
                         
                         <label class="form-label">Release Date: <span style="color: red;">*</span></label>
-                        <asp:TextBox ID="RELEASEDATETextBox" runat="server" Text='<%# Bind("RELEASEDATE", "{0:dd-MMM-yyyy}") %>' 
-                            CssClass="form-control" ReadOnly="true" />
+                        <asp:TextBox ID="RELEASEDATETextBox" runat="server" Text='<%# Bind("RELEASEDATE", "{0:yyyy-MM-dd}") %>' 
+                            CssClass="form-control" TextMode="Date" />
                         <asp:RequiredFieldValidator ID="rfvReleaseDate" runat="server"
                             ControlToValidate="RELEASEDATETextBox"
                             ErrorMessage="Release Date is required"
-                            ForeColor="Red" Display="Dynamic">* Please select a release date from the calendar</asp:RequiredFieldValidator>
-                        <small class="form-text text-muted">Click a date on the calendar below to select</small>
-                        <asp:Calendar ID="CalendarEdit" runat="server" BackColor="White" BorderColor="#999999" 
-                            CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" 
-                            ForeColor="Black" Height="180px" Width="100%" OnSelectionChanged="CalendarEdit_SelectionChanged">
-                            <SelectedDayStyle BackColor="#E0A80D" Font-Bold="True" ForeColor="White" />
-                            <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                            <WeekendDayStyle BackColor="#FFFFCC" />
-                        </asp:Calendar>
+                            ForeColor="Red" Display="Dynamic">* Please select a release date</asp:RequiredFieldValidator>
                         
                         <div class="mt-3">
                             <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" 
@@ -178,23 +171,14 @@
                             Operator="DataTypeCheck" Type="Integer"
                             ErrorMessage="Duration must be a valid number"
                             ForeColor="Red" Display="Dynamic" />
-                        <small class="form-text text-muted">Typical movie duration: 90-180 minutes</small>
                         
                         <label class="form-label">Release Date: <span style="color: red;">*</span></label>
-                        <asp:TextBox ID="RELEASEDATETextBox" runat="server" Text='<%# Bind("RELEASEDATE") %>' 
-                            CssClass="form-control" ReadOnly="true" placeholder="Select from calendar below" />
+                        <asp:TextBox ID="RELEASEDATETextBox" runat="server" Text='<%# Bind("RELEASEDATE", "{0:yyyy-MM-dd}") %>' 
+                            CssClass="form-control" TextMode="Date" />
                         <asp:RequiredFieldValidator ID="rfvReleaseDate" runat="server"
                             ControlToValidate="RELEASEDATETextBox"
                             ErrorMessage="Release Date is required"
-                            ForeColor="Red" Display="Dynamic">* Please select a release date from the calendar</asp:RequiredFieldValidator>
-                        <small class="form-text text-muted">Click a date on the calendar below to select</small>
-                        <asp:Calendar ID="CalendarInsert" runat="server" BackColor="White" BorderColor="#999999" 
-                            CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" 
-                            ForeColor="Black" Height="180px" Width="100%" OnSelectionChanged="CalendarInsert_SelectionChanged">
-                            <SelectedDayStyle BackColor="#E0A80D" Font-Bold="True" ForeColor="White" />
-                            <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                            <WeekendDayStyle BackColor="#FFFFCC" />
-                        </asp:Calendar>
+                            ForeColor="Red" Display="Dynamic">* Please select a release date</asp:RequiredFieldValidator>
                         
                         <div class="mt-3">
                             <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" 
@@ -210,45 +194,14 @@
             <ItemTemplate>
                 <div class="row">
                     <div class="col-md-6">
-                        <h4 class="mb-3" style="color: #0D1B2A;"><i class="fas fa-info-circle"></i> Movie Information</h4>
-                        
-                        <div class="info-group mb-3">
-                            <label class="form-label"><strong>Movie ID:</strong></label>
-                            <asp:Label ID="MOVIEIDLabel" runat="server" Text='<%# Eval("MOVIEID") %>' CssClass="form-control-plaintext" />
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> 
+                            <strong>Select a movie to edit:</strong> Click the "Edit" button next to any movie in the table below to modify its information.
                         </div>
-                        
-                        <div class="info-group mb-3">
-                            <label class="form-label"><strong>Movie Title:</strong></label>
-                            <asp:Label ID="MOVIETITLELabel" runat="server" Text='<%# Eval("MOVIETITLE") %>' CssClass="form-control-plaintext" />
-                        </div>
-                        
-                        <div class="info-group mb-3">
-                            <label class="form-label"><strong>Language:</strong></label>
-                            <asp:Label ID="MOVIELANGUAGELabel" runat="server" Text='<%# Eval("MOVIELANGUAGE") %>' CssClass="form-control-plaintext" />
-                        </div>
-                        
-                        <div class="info-group mb-3">
-                            <label class="form-label"><strong>Duration:</strong></label>
-                            <asp:Label ID="MOVIEDURATIONLabel" runat="server" Text='<%# Eval("MOVIEDURATION") + " minutes" %>' CssClass="form-control-plaintext" />
-                        </div>
-                        
-                        <div class="info-group mb-3">
-                            <label class="form-label"><strong>Release Date:</strong></label>
-                            <asp:Label ID="RELEASEDATELabel" runat="server" Text='<%# Eval("RELEASEDATE", "{0:dd-MMM-yyyy}") %>' CssClass="form-control-plaintext" />
-                        </div>
-                        
-                        <div class="mt-4">
-                            <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" 
-                                Text="?? Edit" CssClass="btn-update" />
-                            <asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" 
-                                Text="??? Delete" CssClass="btn-delete" 
-                                OnClientClick="return confirm('?? WARNING: Deleting this movie will also remove all related shows, bookings, and tickets.\n\nAre you absolutely sure you want to proceed?');" />
+                        <div class="mt-3">
                             <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" 
                                 Text="? Add New Movie" CssClass="btn-insert" />
                         </div>
-                        <small class="form-text text-muted mt-2">
-                            <i class="fas fa-info-circle"></i> Click Edit to modify this movie or Add New to create another movie
-                        </small>
                     </div>
                 </div>
             </ItemTemplate>
@@ -267,6 +220,7 @@
             DataSourceID="SqlDataSource1" CssClass="table table-striped table-hover gridview-styled"
             AllowPaging="True" AllowSorting="True" PageSize="10" 
             EmptyDataText="No movies found. Click 'Add New Movie' above to create your first movie."
+            OnRowCommand="GridView1_RowCommand"
             OnRowDeleting="GridView1_RowDeleting"
             OnRowDataBound="GridView1_RowDataBound">
             <Columns>
@@ -275,10 +229,17 @@
                 <asp:BoundField DataField="MOVIELANGUAGE" HeaderText="Language" SortExpression="MOVIELANGUAGE" />
                 <asp:BoundField DataField="MOVIEDURATION" HeaderText="Duration (min)" SortExpression="MOVIEDURATION" />
                 <asp:BoundField DataField="RELEASEDATE" HeaderText="Release Date" SortExpression="RELEASEDATE" DataFormatString="{0:dd-MMM-yyyy}" />
-                <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" ButtonType="Button" 
-                    ControlStyle-CssClass="btn btn-sm btn-primary me-1" 
-                    DeleteText="Delete"
-                    EditText="Edit" />
+                <asp:TemplateField HeaderText="Actions">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkEdit" runat="server" Text="?? Edit" 
+                            CommandName="EditMovie" CommandArgument='<%# Eval("MOVIEID") %>' 
+                            CssClass="btn btn-sm btn-primary me-1" />
+                        <asp:LinkButton ID="lnkDelete" runat="server" Text="??? Delete" 
+                            CommandName="DeleteMovie" CommandArgument='<%# Eval("MOVIEID") %>'
+                            OnClientClick="return confirm('Delete this movie and related records?');"
+                            CssClass="btn btn-sm btn-danger" />
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
             <PagerStyle CssClass="pagination" HorizontalAlign="Center" />
             <EmptyDataTemplate>
@@ -303,8 +264,8 @@
         ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" 
         ProviderName="<%$ ConnectionStrings:ConnectionString2.ProviderName %>" 
         SelectCommand="SELECT MOVIEID, MOVIETITLE, MOVIELANGUAGE, MOVIEDURATION, RELEASEDATE FROM MOVIE ORDER BY MOVIEID"
-        InsertCommand="INSERT INTO MOVIE (MOVIEID, MOVIETITLE, MOVIELANGUAGE, MOVIEDURATION, RELEASEDATE) VALUES (:MOVIEID, :MOVIETITLE, :MOVIELANGUAGE, :MOVIEDURATION, TO_DATE(:RELEASEDATE, 'DD-MON-YYYY'))"
-        UpdateCommand="UPDATE MOVIE SET MOVIETITLE = :MOVIETITLE, MOVIELANGUAGE = :MOVIELANGUAGE, MOVIEDURATION = :MOVIEDURATION, RELEASEDATE = TO_DATE(:RELEASEDATE, 'DD-MON-YYYY') WHERE MOVIEID = :MOVIEID"
+        InsertCommand="INSERT INTO MOVIE (MOVIEID, MOVIETITLE, MOVIELANGUAGE, MOVIEDURATION, RELEASEDATE) VALUES (:MOVIEID, :MOVIETITLE, :MOVIELANGUAGE, :MOVIEDURATION, TO_DATE(:RELEASEDATE, 'YYYY-MM-DD'))"
+        UpdateCommand="UPDATE MOVIE SET MOVIETITLE = :MOVIETITLE, MOVIELANGUAGE = :MOVIELANGUAGE, MOVIEDURATION = :MOVIEDURATION, RELEASEDATE = TO_DATE(:RELEASEDATE, 'YYYY-MM-DD') WHERE MOVIEID = :MOVIEID"
         DeleteCommand="BEGIN DELETE FROM TICKET WHERE BOOKINGID IN (SELECT BOOKINGID FROM BOOKING WHERE SHOWID IN (SELECT SHOWID FROM SHOW WHERE MOVIEID = :MOVIEID)); DELETE FROM BOOKING WHERE SHOWID IN (SELECT SHOWID FROM SHOW WHERE MOVIEID = :MOVIEID); DELETE FROM SHOW WHERE MOVIEID = :MOVIEID; DELETE FROM MOVIE WHERE MOVIEID = :MOVIEID; END;"
         OnInserted="SqlDataSource1_Inserted"
         OnUpdated="SqlDataSource1_Updated"

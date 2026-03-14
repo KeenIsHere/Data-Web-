@@ -10,7 +10,11 @@
         <div class="col-md-6">
             <div class="formview-container">
                 <h4 style="color: #0D1B2A;"><i class="fas fa-building"></i> Theater Information</h4>
-                <asp:FormView ID="FormViewTheater" runat="server" DataKeyNames="THEATERID" DataSourceID="SqlDataSourceTheater" DefaultMode="Insert">
+                <asp:FormView ID="FormViewTheater" runat="server" DataKeyNames="THEATERID" DataSourceID="SqlDataSourceTheater" DefaultMode="ReadOnly"
+                    OnModeChanging="FormViewTheater_ModeChanging"
+                    OnItemInserted="FormViewTheater_ItemInserted"
+                    OnItemUpdated="FormViewTheater_ItemUpdated"
+                    OnItemDeleted="FormViewTheater_ItemDeleted">
                     <EditItemTemplate>
                         <label class="form-label">Theater ID:</label>
                         <asp:Label ID="THEATERIDLabel1" runat="server" Text='<%# Eval("THEATERID") %>' CssClass="form-control-plaintext" />
@@ -44,17 +48,12 @@
                     </InsertItemTemplate>
                     
                     <ItemTemplate>
-                        <label class="form-label">Theater ID:</label>
-                        <asp:Label ID="THEATERIDLabel" runat="server" Text='<%# Eval("THEATERID") %>' CssClass="form-control-plaintext" />
-                        
-                        <label class="form-label">Theater Name:</label>
-                        <asp:Label ID="THEATERNAMELabel" runat="server" Text='<%# Eval("THEATERNAME") %>' CssClass="form-control-plaintext" />
-                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Select a theater to edit:</strong> Click the Edit button from theater table.
+                        </div>
                         <div class="mt-3">
-                            <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="btn-update" />
-                            <asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="btn-delete" 
-                                OnClientClick="return confirm('Are you sure you want to delete this theater?');" />
-                            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="Add New" CssClass="btn-insert" />
+                            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="? Add New Theater" CssClass="btn-insert" />
                         </div>
                     </ItemTemplate>
                 </asp:FormView>
@@ -64,12 +63,16 @@
                 <h4 style="color: #0D1B2A;"><i class="fas fa-list"></i> All Theaters</h4>
                 <asp:GridView ID="GridViewTheater" runat="server" AutoGenerateColumns="False" DataKeyNames="THEATERID" 
                     DataSourceID="SqlDataSourceTheater" CssClass="table table-striped table-hover gridview-styled"
-                    AllowPaging="True" AllowSorting="True" PageSize="5">
+                    AllowPaging="True" AllowSorting="True" PageSize="5" OnRowCommand="GridViewTheater_RowCommand">
                     <Columns>
                         <asp:BoundField DataField="THEATERID" HeaderText="Theater ID" ReadOnly="True" SortExpression="THEATERID" />
                         <asp:BoundField DataField="THEATERNAME" HeaderText="Theater Name" SortExpression="THEATERNAME" />
-                        <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" ButtonType="Button" 
-                            ControlStyle-CssClass="btn btn-sm btn-primary me-1" />
+                        <asp:TemplateField HeaderText="Actions">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkEditTheater" runat="server" Text="?? Edit" CommandName="EditTheater" CommandArgument='<%# Eval("THEATERID") %>' CssClass="btn btn-sm btn-primary me-1" />
+                                <asp:LinkButton ID="lnkDeleteTheater" runat="server" Text="??? Delete" CommandName="Delete" CssClass="btn btn-sm btn-danger" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>
@@ -78,7 +81,11 @@
         <div class="col-md-6">
             <div class="formview-container">
                 <h4 style="color: #0D1B2A;"><i class="fas fa-door-open"></i> Hall Information</h4>
-                <asp:FormView ID="FormViewHall" runat="server" DataKeyNames="HALLID" DataSourceID="SqlDataSourceHall" DefaultMode="Insert">
+                <asp:FormView ID="FormViewHall" runat="server" DataKeyNames="HALLID" DataSourceID="SqlDataSourceHall" DefaultMode="ReadOnly"
+                    OnModeChanging="FormViewHall_ModeChanging"
+                    OnItemInserted="FormViewHall_ItemInserted"
+                    OnItemUpdated="FormViewHall_ItemUpdated"
+                    OnItemDeleted="FormViewHall_ItemDeleted">
                     <EditItemTemplate>
                         <label class="form-label">Hall ID:</label>
                         <asp:Label ID="HALLIDLabel1" runat="server" Text='<%# Eval("HALLID") %>' CssClass="form-control-plaintext" />
@@ -134,23 +141,12 @@
                     </InsertItemTemplate>
                     
                     <ItemTemplate>
-                        <label class="form-label">Hall ID:</label>
-                        <asp:Label ID="HALLIDLabel" runat="server" Text='<%# Eval("HALLID") %>' CssClass="form-control-plaintext" />
-                        
-                        <label class="form-label">Theater ID:</label>
-                        <asp:Label ID="THEATERIDLabel" runat="server" Text='<%# Eval("THEATERID") %>' CssClass="form-control-plaintext" />
-                        
-                        <label class="form-label">Hall Number:</label>
-                        <asp:Label ID="HALLNUMBERLabel" runat="server" Text='<%# Eval("HALLNUMBER") %>' CssClass="form-control-plaintext" />
-                        
-                        <label class="form-label">Hall Capacity:</label>
-                        <asp:Label ID="HALLCAPACITYLabel" runat="server" Text='<%# Eval("HALLCAPACITY") %>' CssClass="form-control-plaintext" />
-                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Select a hall to edit:</strong> Click the Edit button from hall table.
+                        </div>
                         <div class="mt-3">
-                            <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="btn-update" />
-                            <asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="btn-delete" 
-                                OnClientClick="return confirm('Are you sure you want to delete this hall?');" />
-                            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="Add New" CssClass="btn-insert" />
+                            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="? Add New Hall" CssClass="btn-insert" />
                         </div>
                     </ItemTemplate>
                 </asp:FormView>
@@ -162,7 +158,7 @@
         <h3 class="mb-3" style="color: #0D1B2A;"><i class="fas fa-list"></i> All Halls with Theater Information</h3>
         <asp:GridView ID="GridViewHall" runat="server" AutoGenerateColumns="False" DataKeyNames="HALLID" 
             DataSourceID="SqlDataSourceHallView" CssClass="table table-striped table-hover gridview-styled"
-            AllowPaging="True" AllowSorting="True" PageSize="10">
+            AllowPaging="True" AllowSorting="True" PageSize="10" OnRowCommand="GridViewHall_RowCommand">
             <Columns>
                 <asp:BoundField DataField="HALLID" HeaderText="Hall ID" ReadOnly="True" SortExpression="HALLID" />
                 <asp:TemplateField HeaderText="Theater Name" SortExpression="THEATERNAME">
@@ -173,6 +169,11 @@
                 </asp:TemplateField>
                 <asp:BoundField DataField="HALLNUMBER" HeaderText="Hall Number" SortExpression="HALLNUMBER" />
                 <asp:BoundField DataField="HALLCAPACITY" HeaderText="Capacity" SortExpression="HALLCAPACITY" />
+                <asp:TemplateField HeaderText="Actions">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkEditHall" runat="server" Text="?? Edit" CommandName="EditHall" CommandArgument='<%# Eval("HALLID") %>' CssClass="btn btn-sm btn-primary me-1" />
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
     </div>

@@ -1,4 +1,4 @@
-<%@ Page Title="Show Details" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ShowDetails.aspx.cs" Inherits="WebApplication3.ShowDetails" %>
+﻿ <%@ Page Title="Show Details" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ShowDetails.aspx.cs" Inherits="WebApplication3.ShowDetails" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     
@@ -7,7 +7,11 @@
     </div>
 
     <div class="formview-container">
-        <asp:FormView ID="FormView1" runat="server" DataKeyNames="SHOWID" DataSourceID="SqlDataSource1" DefaultMode="Insert">
+        <asp:FormView ID="FormView1" runat="server" DataKeyNames="SHOWID" DataSourceID="SqlDataSource1" DefaultMode="ReadOnly"
+            OnItemInserted="FormView1_ItemInserted"
+            OnItemUpdated="FormView1_ItemUpdated"
+            OnItemDeleted="FormView1_ItemDeleted"
+            OnModeChanging="FormView1_ModeChanging">
             <EditItemTemplate>
                 <div class="row">
                     <div class="col-md-6">
@@ -27,13 +31,7 @@
                         </asp:DropDownList>
                         
                         <label class="form-label">Show Date:</label>
-                        <asp:TextBox ID="SHOWDATETextBox" runat="server" Text='<%# Bind("SHOWDATE", "{0:dd-MMM-yyyy}") %>' CssClass="form-control" />
-                        <asp:Calendar ID="CalendarEdit" runat="server" BackColor="White" BorderColor="#999999" 
-                            CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" 
-                            ForeColor="Black" Height="180px" Width="100%" OnSelectionChanged="CalendarEdit_SelectionChanged">
-                            <SelectedDayStyle BackColor="#E0A80D" Font-Bold="True" ForeColor="White" />
-                            <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                        </asp:Calendar>
+                        <asp:TextBox ID="SHOWDATETextBox" runat="server" Text='<%# Bind("SHOWDATE", "{0:yyyy-MM-dd}") %>' CssClass="form-control" TextMode="Date" />
                         
                         <label class="form-label">Show Time:</label>
                         <asp:TextBox ID="SHOWTIMETextBox" runat="server" Text='<%# Bind("SHOWTIME") %>' CssClass="form-control" placeholder="HH:MM" />
@@ -69,13 +67,7 @@
                         </asp:DropDownList>
                         
                         <label class="form-label">Show Date:</label>
-                        <asp:TextBox ID="SHOWDATETextBox" runat="server" Text='<%# Bind("SHOWDATE") %>' CssClass="form-control" ReadOnly="true" />
-                        <asp:Calendar ID="CalendarInsert" runat="server" BackColor="White" BorderColor="#999999" 
-                            CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" 
-                            ForeColor="Black" Height="180px" Width="100%" OnSelectionChanged="CalendarInsert_SelectionChanged">
-                            <SelectedDayStyle BackColor="#E0A80D" Font-Bold="True" ForeColor="White" />
-                            <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                        </asp:Calendar>
+                        <asp:TextBox ID="SHOWDATETextBox" runat="server" Text='<%# Bind("SHOWDATE", "{0:yyyy-MM-dd}") %>' CssClass="form-control" TextMode="Date" />
                         
                         <label class="form-label">Show Time:</label>
                         <asp:TextBox ID="SHOWTIMETextBox" runat="server" Text='<%# Bind("SHOWTIME") %>' CssClass="form-control" placeholder="HH:MM" />
@@ -93,26 +85,12 @@
             <ItemTemplate>
                 <div class="row">
                     <div class="col-md-6">
-                        <label class="form-label">Show ID:</label>
-                        <asp:Label ID="SHOWIDLabel" runat="server" Text='<%# Eval("SHOWID") %>' CssClass="form-control-plaintext" />
-                        
-                        <label class="form-label">Movie ID:</label>
-                        <asp:Label ID="MOVIEIDLabel" runat="server" Text='<%# Eval("MOVIEID") %>' CssClass="form-control-plaintext" />
-                        
-                        <label class="form-label">Hall ID:</label>
-                        <asp:Label ID="HALLIDLabel" runat="server" Text='<%# Eval("HALLID") %>' CssClass="form-control-plaintext" />
-                        
-                        <label class="form-label">Show Date:</label>
-                        <asp:Label ID="SHOWDATELabel" runat="server" Text='<%# Eval("SHOWDATE", "{0:dd-MMM-yyyy}") %>' CssClass="form-control-plaintext" />
-                        
-                        <label class="form-label">Show Time:</label>
-                        <asp:Label ID="SHOWTIMELabel" runat="server" Text='<%# Eval("SHOWTIME") %>' CssClass="form-control-plaintext" />
-                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Select a show to edit:</strong> Click the "Edit" button next to any show in the table below.
+                        </div>
                         <div class="mt-3">
-                            <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="btn-update" />
-                            <asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="btn-delete" 
-                                OnClientClick="return confirm('?? WARNING: Deleting this show will also remove:\n\n� All bookings for this show\n� All tickets for this show\n� All payments for this show\n\nThis action cannot be undone!\n\nAre you sure you want to proceed?');" />
-                            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="Add New" CssClass="btn-insert" />
+                            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="➕ Add New Show" CssClass="btn-insert" />
                         </div>
                     </div>
                 </div>
@@ -124,7 +102,7 @@
         <h3 class="mb-3" style="color: #0D1B2A;"><i class="fas fa-list"></i> All Shows</h3>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="SHOWID" 
             DataSourceID="SqlDataSourceShowView" CssClass="table table-striped table-hover gridview-styled"
-            AllowPaging="True" AllowSorting="True" PageSize="10">
+            AllowPaging="True" AllowSorting="True" PageSize="10" OnRowCommand="GridView1_RowCommand">
             <Columns>
                 <asp:BoundField DataField="SHOWID" HeaderText="Show ID" ReadOnly="True" SortExpression="SHOWID" />
                 <asp:TemplateField HeaderText="Movie Title" SortExpression="MOVIETITLE">
@@ -141,6 +119,12 @@
                 </asp:TemplateField>
                 <asp:BoundField DataField="SHOWDATE" HeaderText="Show Date" SortExpression="SHOWDATE" DataFormatString="{0:dd-MMM-yyyy}" />
                 <asp:BoundField DataField="SHOWTIME" HeaderText="Show Time" SortExpression="SHOWTIME" />
+                <asp:TemplateField HeaderText="Actions">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkEdit" runat="server" Text="✏️ Edit" CommandName="EditShow" CommandArgument='<%# Eval("SHOWID") %>' CssClass="btn btn-sm btn-primary me-1" />
+                        <asp:LinkButton ID="lnkDelete" runat="server" Text="🗑️ Delete" CommandName="DeleteShow" CommandArgument='<%# Eval("SHOWID") %>' OnClientClick="return confirm('Delete this show and related records?');" CssClass="btn btn-sm btn-danger" />
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
     </div>
@@ -149,8 +133,8 @@
         ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" 
         ProviderName="<%$ ConnectionStrings:ConnectionString2.ProviderName %>" 
         SelectCommand="SELECT SHOWID, MOVIEID, HALLID, SHOWDATE, SHOWTIME FROM SHOW ORDER BY SHOWID"
-        InsertCommand="INSERT INTO SHOW (SHOWID, MOVIEID, HALLID, SHOWDATE, SHOWTIME) VALUES (:SHOWID, :MOVIEID, :HALLID, TO_DATE(:SHOWDATE, 'DD-MON-YYYY'), :SHOWTIME)"
-        UpdateCommand="UPDATE SHOW SET MOVIEID = :MOVIEID, HALLID = :HALLID, SHOWDATE = TO_DATE(:SHOWDATE, 'DD-MON-YYYY'), SHOWTIME = :SHOWTIME WHERE SHOWID = :SHOWID"
+        InsertCommand="INSERT INTO SHOW (SHOWID, MOVIEID, HALLID, SHOWDATE, SHOWTIME) VALUES (:SHOWID, :MOVIEID, :HALLID, TO_DATE(:SHOWDATE, 'YYYY-MM-DD'), :SHOWTIME)"
+        UpdateCommand="UPDATE SHOW SET MOVIEID = :MOVIEID, HALLID = :HALLID, SHOWDATE = TO_DATE(:SHOWDATE, 'YYYY-MM-DD'), SHOWTIME = :SHOWTIME WHERE SHOWID = :SHOWID"
         DeleteCommand="BEGIN DELETE FROM PAYMENT WHERE BOOKINGID IN (SELECT BOOKINGID FROM BOOKING WHERE SHOWID = :SHOWID); DELETE FROM TICKET WHERE BOOKINGID IN (SELECT BOOKINGID FROM BOOKING WHERE SHOWID = :SHOWID); DELETE FROM BOOKING WHERE SHOWID = :SHOWID; DELETE FROM SHOW WHERE SHOWID = :SHOWID; END;">
         <InsertParameters>
             <asp:Parameter Name="SHOWID" Type="String" />
