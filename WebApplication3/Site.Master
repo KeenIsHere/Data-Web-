@@ -53,6 +53,8 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/TheaterCityHallDetails.aspx"><i class="fas fa-building"></i> Theaters</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/ShowDetails.aspx"><i class="fas fa-calendar"></i> Shows</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/TicketDetails.aspx"><i class="fas fa-ticket-alt"></i> Tickets</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About.aspx"><i class="fas fa-circle-info"></i> About</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact.aspx"><i class="fas fa-envelope"></i> Contact</a></li>
                     </ul>
                 </div>
             </div>

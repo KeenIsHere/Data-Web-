@@ -472,6 +472,156 @@ span[style*="color: red"] {
     z-index: 1000;
 }
 
+/* New styles for redesigned homepage, about page guided tour, and contact page cards */
+.dashboard-hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.metric-card {
+    background: linear-gradient(145deg, #ffffff, #f1f5fb);
+    border-left: 4px solid var(--accent-gold);
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 3px 12px rgba(13, 27, 42, 0.08);
+    height: 100%;
+}
+
+.metric-card i {
+    font-size: 1.5rem;
+    color: var(--accent-gold);
+    margin-bottom: 10px;
+}
+
+.metric-card h6 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.metric-card p {
+    color: #4b5563;
+    font-size: 0.9rem;
+}
+
+.workflow-banner {
+    background: linear-gradient(135deg, var(--primary-dark), #243b55);
+    color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 6px 16px rgba(13, 27, 42, 0.2);
+}
+
+.workflow-banner h4 {
+    color: var(--accent-gold);
+    margin-bottom: 8px;
+}
+
+.about-hero {
+    background: linear-gradient(120deg, rgba(13, 27, 42, 0.95), rgba(27, 38, 59, 0.95));
+    border-radius: 16px;
+    padding: 45px 25px;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+.about-hero h1 {
+    color: var(--accent-gold);
+    font-weight: 700;
+}
+
+.about-hero p {
+    color: #e2e8f0;
+}
+
+.info-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    border-top: 4px solid var(--accent-gold);
+}
+
+.info-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    background: rgba(224, 168, 13, 0.15);
+    color: #8b6a00;
+    margin-bottom: 12px;
+}
+
+.tour-step {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+    border-left: 4px solid var(--accent-gold);
+    padding: 16px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.tour-badge {
+    min-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.guide-panel {
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid #e6ebf1;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06);
+}
+
+.guide-panel h5 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.contact-hero {
+    background: linear-gradient(130deg, #0d1b2a, #203a43, #2c5364);
+    border-radius: 16px;
+    color: #fff;
+    padding: 40px 24px;
+    margin-bottom: 12px;
+}
+
+.contact-hero h1 {
+    color: var(--accent-gold);
+    font-weight: 700;
+}
+
+.contact-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    border-bottom: 4px solid var(--accent-gold);
+}
+
+.contact-icon {
+    font-size: 1.4rem;
+    color: var(--accent-gold);
+    margin-bottom: 8px;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .body-content {
